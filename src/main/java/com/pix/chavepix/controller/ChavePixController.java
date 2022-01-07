@@ -13,24 +13,24 @@ public class ChavePixController {
 
     private final ChavePixInterface chavePixInterface;
 
-    @RequestMapping(value = "/{id}", method= RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ChavePix getPixById(@PathVariable int id) {
         return chavePixInterface.findByPix(id);
     }
 
-    @RequestMapping(method= RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public ChavePix savePix(@RequestBody ChavePix chavePix) {
         return chavePixInterface.savePix(chavePix);
     }
 
-    @RequestMapping(value = "/{id}", method= RequestMethod.PUT)
+    @RequestMapping(method = RequestMethod.PUT)
     public void updatePix(@RequestBody ChavePix chavePix, @PathVariable int id) {
         chavePixInterface.updatePix(chavePix, id);
     }
 
-    @RequestMapping(value = "/{id}", method= RequestMethod.DELETE)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePix(@PathVariable int id){
+    public void deletePix(@PathVariable int id) {
         chavePixInterface.deletePix(id);
     }
 }
