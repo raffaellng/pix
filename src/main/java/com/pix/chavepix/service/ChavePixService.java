@@ -54,7 +54,7 @@ public class ChavePixService implements ChavePixInterface {
                     pix.setMotivoAlteracao(chavePixDTO.getMotivoAlteracao());
                     chavePixRepository.save(pix);
                     return ResponseEntity.noContent().build();
-                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pix não encontrado"));
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente ou pix não encontrado"));
     }
 
     @Override
@@ -65,6 +65,6 @@ public class ChavePixService implements ChavePixInterface {
                     pix.setMotivoAlteracao("Chave Desativada");
                     chavePixRepository.save(pix);
                     return ResponseEntity.noContent().build();
-                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Pix não encontrado"));
+                }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente ou pix não encontrado"));
     }
 }
