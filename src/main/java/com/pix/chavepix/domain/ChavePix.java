@@ -1,12 +1,15 @@
 package com.pix.chavepix.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -33,15 +36,19 @@ public class ChavePix implements Serializable {
     @Column(name = "status_chave")
     private boolean statusChave;
 
-    private int banco;
+    private String banco;
 
     private int agencia;
 
     private int conta;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     @Column(name = "data_criacao")
     private LocalDateTime dataCriacao;
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(iso = DateTimeFormat.ISO.TIME)
     @Column(name = "data_alteracao")
     private LocalDateTime dataAlteracao;
 
