@@ -8,7 +8,7 @@ services:
     environment:
       - MYSQL_DATABASE=dbpix
       - MYSQL_USER=user
-      - MYSQL_PASSWORD=usder
+      - MYSQL_PASSWORD=user
       - MYSQL_ROOT_PASSWORD=user
     ports:
       - "3307:3306"
