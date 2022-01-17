@@ -10,12 +10,11 @@ Subir o projeto no github usando \
 
 
 # O projeto
-O projeto deve disponibilizar um crud de chave pix.\
-Todos os métodos tem que estar expostos via API https. Utilizar o segundo nível de maturidade rest.\
-Banco de dados tem que subir via docker.\
-Utilizar database migration, como flyway para execução dos scripts do banco de dados.\
-Commitar todo dia o que tem feito no projeto para acompanhamento.\
-Escolher um design pattern que será implementado na solução
+O projeto disponibiliza um crud de chave pix.\
+Todos os métodos estão expostos via API https. Utilizar o segundo nível de maturidade rest.\
+Banco de dados subindo via docker.\
+Utilizando database migration, como flyway para execução dos scripts do banco de dados.\
+Design pattern que será implementado na solução
 
 # design pattern
 
@@ -23,3 +22,5 @@ Escolher um design pattern que será implementado na solução
 # Docker
 docker-compose -f local/docker-compose.yml up -d
 
+# Acesso
+http://localhost:8080/swagger-ui.html
