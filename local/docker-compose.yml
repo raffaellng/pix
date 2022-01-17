@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  db:
+    image: mysql:8.0
+    command: --lower_case_table_names=1
+    container_name: mysql-container_local
+    environment:
+      - MYSQL_DATABASE=dbpix
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=user
+      - MYSQL_ROOT_PASSWORD=user
+    ports:
+      - "3307:3306"
+    volumes:
+      - my-db:/var/lib/mysql
+volumes:
+  my-db:
+
