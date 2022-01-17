@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/pix")
@@ -20,12 +22,12 @@ public class ChavePixController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public ChavePix savePix(@RequestBody ChavePixDTO chavePixDTO) {
+    public ChavePix savePix(@RequestBody @Valid ChavePixDTO chavePixDTO) {
         return chavePixInterface.savePix(chavePixDTO);
     }
 
     @PutMapping(value = "/{id}")
-    public void updatePix(@RequestBody ChavePixDTO chavePixDTO, @PathVariable int id) {
+    public void updatePix(@RequestBody @Valid ChavePixDTO chavePixDTO, @PathVariable int id) {
         chavePixInterface.updatePix(id, chavePixDTO);
     }
 

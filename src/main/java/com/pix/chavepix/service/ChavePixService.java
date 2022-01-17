@@ -13,6 +13,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
+import javax.validation.constraints.NotEmpty;
+
 @RestController
 @Service
 @RequiredArgsConstructor
@@ -31,7 +33,7 @@ public class ChavePixService implements ChavePixInterface {
         return chavePixRepository.save(ChavePix.builder()
                 .nomeCLiente(chavePixDTO.getNomeCLiente())
                 .chavePixCliente(chavePixDTO.getChavePixCliente())
-                .tipoChave(chavePixDTO.getTipoChave())
+                .tipoChave(validTipoChave(chavePixDTO.getTipoChave()))
                 .banco(chavePixDTO.getBanco())
                 .agencia(chavePixDTO.getAgencia())
                 .conta(chavePixDTO.getConta())
@@ -41,13 +43,13 @@ public class ChavePixService implements ChavePixInterface {
     }
 
     @Override
-    public ResponseEntity<Object> updatePix(int id ,ChavePixDTO chavePixDTO) {
+    public ResponseEntity<Object> updatePix(int id, ChavePixDTO chavePixDTO) {
         return chavePixRepository.findById(id).
                 map(pix -> {
                     pix.setId(id);
                     pix.setNomeCLiente(chavePixDTO.getNomeCLiente());
                     pix.setChavePixCliente(chavePixDTO.getChavePixCliente());
-                    pix.setTipoChave(chavePixDTO.getTipoChave());
+                    pix.setTipoChave(validTipoChave(chavePixDTO.getTipoChave()));
                     pix.setBanco(chavePixDTO.getBanco());
                     pix.setAgencia(chavePixDTO.getAgencia());
                     pix.setConta(chavePixDTO.getConta());
@@ -66,5 +68,18 @@ public class ChavePixService implements ChavePixInterface {
                     chavePixRepository.save(pix);
                     return ResponseEntity.noContent().build();
                 }).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Cliente ou pix não encontrado"));
+    }
+
+    private String validTipoChave(String tipoChave) {
+        switch (tipoChave) {
+            case "telefone":
+            case "email":
+            case "cpf":
+            case "aleatoria":
+                break;
+            default: new Exception("Tipo de chave não encontrada (telefone,email,cpf,aleatoria)").getMessage();
+                break;
+        }
+        return tipoChave;
     }
 }

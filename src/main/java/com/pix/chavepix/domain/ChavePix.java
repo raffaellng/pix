@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -32,13 +34,15 @@ public class ChavePix implements Serializable {
     @Column(name = "tipo_chave")
     private String tipoChave;
 
-    @Column(name = "status_chave")
-    private boolean statusChave;
+    private boolean statusChave = true;
 
+    @NotBlank(message = "banco nao pode ser null")
     private String banco;
 
+    @NotBlank(message = "agencia nao pode ser null")
     private int agencia;
 
+    @NotBlank(message = "conta nao pode ser null")
     private int conta;
 
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
