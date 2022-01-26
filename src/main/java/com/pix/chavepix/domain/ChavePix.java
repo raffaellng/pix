@@ -1,6 +1,7 @@
 package com.pix.chavepix.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.pix.chavepix.validation.NotEmptyClass;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,6 +9,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -23,12 +27,15 @@ public class ChavePix implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotEmptyClass(message = "Campo nao pode ser Vazio")
     @Column(name = "nome_cliente")
     private String nomeCLiente;
 
+    @NotEmptyClass(message = "Campo nao pode ser Vazio")
     @Column(name = "chave_pix")
     private String chavePixCliente;
 
+    @NotEmptyClass(message = "Campo nao pode ser Vazio")
     @Column(name = "tipo_chave")
     private String tipoChave;
 
